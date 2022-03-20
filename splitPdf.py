@@ -40,8 +40,10 @@ if __name__ == "__main__":
         print(args)
         print(f"file: {__file__}")
     relativeFile = str(__file__).split("\\")[-1]
-    if ".py" in relativeFile:
-        args.remove(relativeFile)
+    try:
+        args.remove(relativeFile) #py
+    except ValueError:
+        pass #exe
     if DEBUG:
         print(args)
     if len(args) < 3:
