@@ -1,9 +1,6 @@
-from ast import arg
-from distutils.debug import DEBUG
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import sys
 import datetime
-import re
 
 DEBUG = False
 
@@ -35,15 +32,11 @@ def main(*args):
     print(f"New PDF created successfully: {outName}")
 
 if __name__ == "__main__":
-    args = sys.argv
+    args = sys.argv[1:] # Just get rid of the first argument. It is the file name no matter .py or .exe. After that no more worries
     if DEBUG:
-        print(args)
+        print(f"sys.argv: {sys.argv}")
+        print(f"args: {args}")
         print(f"file: {__file__}")
-    relativeFile = str(__file__).split("\\")[-1]
-    try:
-        args.remove(relativeFile) #py
-    except ValueError:
-        pass #exe
     if DEBUG:
         print(args)
     if len(args) < 3:
