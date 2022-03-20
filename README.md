@@ -19,7 +19,7 @@ Split PDF files
 <div align="center">
 <img src="https://github.com/Mehmet-Emre-Dogan/splitPdf/blob/main/images/cmd.png"> </img>
 
-<br>
+<br><br><br>
 
 <img src="https://github.com/Mehmet-Emre-Dogan/splitPdf/blob/main/images/window.png"> </img>
 </div>
