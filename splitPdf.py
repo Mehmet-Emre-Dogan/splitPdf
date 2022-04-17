@@ -1,6 +1,7 @@
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import sys
 import datetime
+from msvcrt import getch
 
 DEBUG = False
 
@@ -32,16 +33,35 @@ def main(*args):
     print(f"New PDF created successfully: {outName}")
 
 if __name__ == "__main__":
-    args = sys.argv[1:] # Just get rid of the first argument. It is the file name no matter .py or .exe. After that no more worries
-    if DEBUG:
-        print(f"sys.argv: {sys.argv}")
-        print(f"args: {args}")
-        print(f"file: {__file__}")
-    if DEBUG:
-        print(args)
-    if len(args) < 3:
-        raise SyntaxError("Too few arguments.")
-    elif len(args) > 4:
-        raise SyntaxError("Too many arguments.")
+    try:
+        args = sys.argv[1:] # Just get rid of the first argument. It is the file name no matter .py or .exe. After that no more worries
+        if DEBUG:
+            print(f"sys.argv: {sys.argv}")
+            print(f"args: {args}")
+            print(f"file: {__file__}")
+        if DEBUG:
+            print(args)
+        if len(args) < 3:
+            raise SyntaxError("Too few arguments.")
+            
+        elif len(args) > 4:
+            raise SyntaxError("Too many arguments.")
+        else:
+            main(*args)
+    except SyntaxError as se:
+        if se.msg == "Too few arguments.":
+            print("Manual mode is enabled")
+            main(*[input("Filename: "), input("Start page: "), input("End Page: ")])
+            print("Press any key to exit...")
+            getch()
+        else:
+            raise
+
+    except Exception as ex:
+        print(ex)
+        print("Press any key to exit...")
+        getch()
+    
     else:
-        main(*args)
+        print("Press any key to exit...")
+        getch()
